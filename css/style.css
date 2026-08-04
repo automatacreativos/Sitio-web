@@ -42,7 +42,7 @@ ul{
 }
 
 .container{
-    width:min(1200px,90%);
+    width:min(1300px,92%);
     margin:auto;
 }
 
@@ -73,19 +73,11 @@ section{
 }
 
 .navbar .container{
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
-    gap:40px;
-
     height:90px;
-
-    padding:0 30px;
-
+    gap:40px;
 }
 
 .logo img{
