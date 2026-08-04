@@ -74,11 +74,11 @@ section{
 
 .navbar .container{
 
-    display:grid;
-
-    grid-template-columns:220px 1fr auto;
+    display:flex;
 
     align-items:center;
+
+    justify-content:space-between;
 
     gap:40px;
 
@@ -102,17 +102,19 @@ section{
 
 }
 
-}
-
 .nav-links{
 
     display:flex;
+
+    flex-direction:row;
 
     justify-content:center;
 
     align-items:center;
 
     gap:45px;
+
+    flex:1;
 
 }
 
