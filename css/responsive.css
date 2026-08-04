@@ -1,5 +1,5 @@
 /* ===========================
-   TABLETS
+   TABLETS (1100px)
 =========================== */
 
 @media (max-width:1100px){
@@ -56,7 +56,61 @@
 }
 
 /* ===========================
-   MOBILE
+   DESKTOP - Asegurar que mantiene grid
+=========================== */
+
+@media (min-width:769px){
+
+    .navbar .container{
+        display:grid !important;
+        grid-template-columns:auto 1fr auto !important;
+        align-items:center !important;
+        gap:40px !important;
+        height:90px !important;
+    }
+
+    .hamburger{
+        display:none !important;
+    }
+
+    .nav-links{
+        position:static !important;
+        background:transparent !important;
+        flex-direction:row !important;
+        justify-content:center !important;
+        gap:45px !important;
+        height:100% !important;
+        max-height:none !important;
+        overflow:visible !important;
+        margin:0 !important;
+        padding:0 !important;
+        border-bottom:none !important;
+        box-shadow:none !important;
+        transition:none !important;
+    }
+
+    .nav-links li{
+        padding:0 !important;
+        border-bottom:none !important;
+    }
+
+    .nav-links a{
+        display:flex !important;
+        align-items:center !important;
+        height:100% !important;
+        color:#334155 !important;
+    }
+
+    .btn-nav{
+        display:flex !important;
+        justify-self:end !important;
+        width:auto !important;
+    }
+
+}
+
+/* ===========================
+   MOBILE - Hamburger menu
 =========================== */
 
 @media (max-width:768px){
@@ -65,7 +119,7 @@
         display:flex;
         justify-content:space-between;
         align-items:center;
-        gap:20px;
+        gap:10px;
         height:auto;
         padding:15px 0;
     }
@@ -121,7 +175,7 @@
     }
 
     .nav-links.active{
-        max-height:300px;
+        max-height:500px;
     }
 
     .nav-links li{
@@ -137,6 +191,7 @@
         display:block;
         color:#334155;
         font-weight:600;
+        height:auto;
     }
 
     .btn-nav{
@@ -203,10 +258,11 @@
     textarea{
         width:100%;
     }
+
 }
 
 /* ===========================
-   SMALL DEVICES
+   SMALL DEVICES (480px)
 =========================== */
 
 @media (max-width:480px){
@@ -236,4 +292,5 @@
     .tech-grid{
         grid-template-columns:1fr;
     }
+
 }
