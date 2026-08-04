@@ -171,7 +171,7 @@
         max-height:0;
         overflow:hidden;
         transition:max-height .3s ease;
-        z-index:999;
+        z-index:1005;
     }
 
     .nav-links.active{
