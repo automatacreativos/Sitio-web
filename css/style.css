@@ -76,9 +76,10 @@ NAVBAR
 }
 
 .logo img{
-
     height:42px;
-
+    background:#ffffff;
+    padding:8px;
+    border-radius:12px;
 }
 
 .nav-links{
