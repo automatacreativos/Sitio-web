@@ -165,7 +165,7 @@
         flex-direction:column;
         gap:0;
         margin:0;
-        padding:20px;
+        padding:10px 20px 30px 20px;
         border-bottom:1px solid #E2E8F0;
         box-shadow:0 10px 30px rgba(15,23,42,.08);
         max-height:0;
@@ -176,14 +176,14 @@
 
     .nav-links.active{
        
-       max-height:calc(100dvh - 90px);
+       max-height:calc(100dvh - 60px);
        
        overflow-y: auto;
 
     }
 
     .nav-links li{
-        padding:10px 0;
+        padding:8px 0;
         border-bottom:1px solid #F1F5F9;
     }
 
@@ -195,6 +195,7 @@
         display:block;
         color:#334155;
         font-weight:600;
+        font-size: 0,95rem;
         height:auto;
     }
 
