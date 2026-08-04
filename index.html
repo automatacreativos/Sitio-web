@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flujo — Automatización e IA para tu presencia digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --dark-navy:#0A0E27;
+    --indigo:#6366F1;
+    --emerald:#10B981;
+    --amber:#F59E0B;
+    --cloud-white:#F8FAFC;
+    --paper:#F8FAFC;
+    --paper-raised:#EFF6FF;
+    --ink:#0A0E27;
+    --ink-soft:#1E293B;
+    --muted:#64748B;
+    --line:#E2E8F0;
+    --signal:#6366F1;
+    --signal-soft:#E0E7FF;
+    --pulse:#F59E0B;
+    --radius:8px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  .eyebrow{
+    font-family:'Inter', sans-serif;
+    font-size:0.75rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--indigo);
+    font-weight:600;
+    display:inline-flex;
+    align-items:center;
+    gap:0.6em;
+  }
+
+  .eyebrow::before{
+    content:'';
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--indigo);
+    display:inline-block;
+  }
+
+  h1,h2,h3{
+    font-family:'Inter', sans-serif;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    color:var(--ink);
+  }
+
+  em, .accent{
+    font-weight:600;
+    background:linear-gradient(135deg, var(--indigo), var(--emerald));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    font-style:italic;
+  }
+
+  a{color:inherit; text-decoration:none;}
+
+  /* ---------- Layout shell ---------- */
+
+  .page{
+    position:relative;
+    max-width:1280px;
+    margin:0 auto;
+    padding:0 clamp(1.25rem, 4vw, 3rem);
+  }
+
+  /* spine: the node line that threads down the page */
+  .spine{
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:clamp(1.25rem, 4vw, 3rem);
+    display:flex;
+    justify-content:center;
+  }
+
+  .spine-line{
+    position:relative;
+    width:2px;
+    background:var(--line);
+    height:100%;
+  }
+
+  .spine-node{
+    position:absolute;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--line);
+    transition:all 0.4s ease;
+  }
+
+  .spine-node.lit{
+    background:var(--indigo);
+    border-color:var(--indigo);
+    box-shadow:0 0 0 6px var(--signal-soft);
+    transform:translate(-50%,-50%) scale(1.15);
+  }
+
+  header, section, footer{
+    position:relative;
+    padding-left:clamp(1.75rem, 5.5vw, 3.75rem);
+  }
+
+  /* ---------- Nav ---------- */
+
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:1.5rem;
+    padding-bottom:1.5rem;
+    backdrop-filter:blur(10px);
+  }
+
+  .wordmark{
+    font-family:'Inter', sans-serif;
+    font-weight:800;
+    font-size:1.15rem;
+    letter-spacing:-0.03em;
+  }
+
+  .wordmark span{color:var(--indigo);}
+
+  .nav-links{
+    display:flex;
+    gap:2.5rem;
+    font-size:0.9rem;
+    font-weight:500;
+    color:var(--ink-soft);
+  }
+
+  .nav-links a{
+    transition:color 0.3s ease;
+    position:relative;
+  }
+
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    bottom:-4px;
+    left:0;
+    width:0;
+    height:2px;
+    background:var(--indigo);
+    transition:width 0.3s ease;
+  }
+
+  .nav-links a:hover::after{width:100%;}
+  .nav-links a:hover{color:var(--indigo);}
+
+  @media (max-width:768px){
+    .nav-links{display:none;}
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero{
+    padding-top:clamp(3rem, 10vh, 6rem);
+    padding-bottom:clamp(3.5rem, 12vh, 7rem);
+    position:relative;
+    overflow:hidden;
+  }
+
+  .hero::before{
+    content:'';
+    position:absolute;
+    top:-40%;
+    right:-10%;
+    width:600px;
+    height:600px;
+    background:radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+    border-radius:50%;
+    pointer-events:none;
+    z-index:-1;
+  }
+
+  .hero h1{
+    font-size:clamp(2.4rem, 6.5vw, 4.8rem);
+    line-height:1.08;
+    max-width:16ch;
+    margin-top:1.2rem;
+    color:var(--ink);
+  }
+
+  .hero-sub{
+    margin-top:1.8rem;
+    max-width:50ch;
+    font-size:clamp(1.02rem, 1.8vw, 1.3rem);
+    color:var(--ink-soft);
+    line-height:1.7;
+  }
+
+  .hero-actions{
+    margin-top:2.8rem;
+    display:flex;
+    align-items:center;
+    gap:1.8rem;
+    flex-wrap:wrap;
+  }
+
+  .btn-primary{
+    background:var(--indigo);
+    color:var(--cloud-white);
+    padding:0.95rem 2rem;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:0.98rem;
+    border-radius:var(--radius);
+    border:none;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:0.8rem;
+    transition:all 0.3s ease;
+    box-shadow:0 4px 15px rgba(99, 102, 241, 0.2);
+  }
+
+  .btn-primary:hover{
+    background:var(--indigo);
+    transform:translateY(-2px);
+    box-shadow:0 8px 25px rgba(99, 102, 241, 0.35);
+  }
+
+  .btn-primary:focus-visible{outline:2px solid var(--indigo); outline-offset:4px;}
+
+  .btn-primary .arrow{
+    transition:transform 0.3s ease;
+    font-weight:700;
+  }
+
+  .btn-primary:hover .arrow{transform:translateX(4px);}
+
+  .hero-note{
+    font-size:0.85rem;
+    color:var(--muted);
+    font-weight:500;
+  }
+
+  /* Hero image */
+  .hero-visual{
+    margin-top:clamp(2.5rem, 6vw, 4rem);
+    width:100%;
+    max-width:100%;
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:0 20px 50px rgba(99, 102, 241, 0.15);
+  }
+
+  .hero-visual img{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+
+  /* signal waveform under hero */
+  .waveform{
+    margin-top:clamp(2rem, 5vw, 3.5rem);
+    width:100%;
+    max-width:640px;
+    height:auto;
+    display:block;
+  }
+
+  .waveform path{
+    fill:none;
+    stroke:var(--indigo);
+    stroke-width:2;
+    stroke-linecap:round;
+  }
+
+  .waveform circle{fill:var(--emerald);}
+
+  /* ---------- Section shared ---------- */
+
+  section{
+    padding-top:clamp(4rem, 10vh, 7rem);
+    padding-bottom:clamp(4rem, 10vh, 7rem);
+    border-top:1px solid var(--line);
+  }
+
+  .section-head{
+    max-width:42ch;
+    margin-bottom:clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .section-head h2{
+    font-size:clamp(1.8rem, 3.8vw, 2.8rem);
+    margin-top:0.8rem;
+    line-height:1.2;
+  }
+
+  /* ---------- Servicios ---------- */
+
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+
+  @media (max-width:820px){
+    .services-grid{grid-template-columns:1fr;}
+  }
+
+  .service-card{
+    background:var(--paper);
+    padding:2.5rem 2.2rem;
+    transition:all 0.3s ease;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .service-card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:3px;
+    background:linear-gradient(90deg, var(--indigo), var(--emerald));
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform 0.3s ease;
+  }
+
+  .service-card:hover{
+    background:var(--paper-raised);
+    transform:translateY(-4px);
+    box-shadow:0 12px 30px rgba(99, 102, 241, 0.1);
+  }
+
+  .service-card:hover::before{
+    transform:scaleX(1);
+  }
+
+  .service-card .tag{
+    font-family:'Inter', monospace;
+    font-size:0.72rem;
+    color:var(--indigo);
+    letter-spacing:0.1em;
+    font-weight:600;
+  }
+
+  .service-card h3{
+    margin-top:1rem;
+    font-size:1.35rem;
+    color:var(--ink);
+  }
+
+  .service-card p{
+    margin-top:0.9rem;
+    font-size:0.98rem;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+
+  /* Service icons */
+  .service-icon{
+    width:60px;
+    height:60px;
+    margin-bottom:1.2rem;
+    display:block;
+  }
+
+  /* ---------- Team Section ---------- */
+
+  .team-section{
+    background:linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+    border-radius:var(--radius);
+    padding:3rem 2.5rem;
+    margin-top:3rem;
+  }
+
+  .team-visual{
+    margin-top:2.5rem;
+    border-radius:var(--radius);
+    overflow:hidden;
+    max-width:900px;
+  }
+
+  .team-visual img{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+
+  /* ---------- Misión y Visión ---------- */
+
+  .mv-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3.5rem;
+    margin-top:3rem;
+  }
+
+  @media (max-width:760px){
+    .mv-grid{grid-template-columns:1fr; gap:2.8rem;}
+  }
+
+  .mv-block{
+    padding:2.5rem;
+    background:var(--paper-raised);
+    border-radius:var(--radius);
+    border-left:4px solid var(--indigo);
+    transition:all 0.3s ease;
+  }
+
+  .mv-block:nth-child(2){
+    border-left-color:var(--emerald);
+  }
+
+  .mv-block:hover{
+    transform:translateX(4px);
+    box-shadow:0 8px 20px rgba(99, 102, 241, 0.1);
+  }
+
+  .mv-block h3{
+    font-size:1.45rem;
+    margin-top:0.8rem;
+  }
+
+  .mv-block p{
+    margin-top:1.2rem;
+    color:var(--ink-soft);
+    font-size:1.02rem;
+    line-height:1.7;
+    max-width:45ch;
+  }
+
+  .mv-block .eyebrow{margin-bottom:0.3rem;}
+
+  /* ---------- CTA Section ---------- */
+
+  .cta-section{
+    background:linear-gradient(135deg, var(--dark-navy) 0%, var(--indigo) 100%);
+    color:var(--cloud-white);
+    border-radius:var(--radius);
+    padding:3.5rem 2.5rem;
+    margin-top:3rem;
+  }
+
+  .cta-section .section-head h2{
+    color:var(--cloud-white);
+  }
+
+  .cta-section .eyebrow{
+    color:var(--amber);
+  }
+
+  .cta-section .eyebrow::before{
+    background:var(--amber);
+  }
+
+  /* ---------- Contacto ---------- */
+
+  .contact-wrap{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:2.5rem;
+    margin-top:2.8rem;
+  }
+
+  .contact-copy p{
+    color:rgba(255, 255, 255, 0.9);
+    max-width:45ch;
+    margin-top:1rem;
+    line-height:1.7;
+    font-size:1.05rem;
+  }
+
+  .btn-ghost{
+    border:2px solid var(--cloud-white);
+    padding:0.95rem 1.8rem;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    border-radius:var(--radius);
+    color:var(--cloud-white);
+    transition:all 0.3s ease;
+    white-space:nowrap;
+    cursor:pointer;
+    background:transparent;
+  }
+
+  .btn-ghost:hover{
+    background:var(--cloud-white);
+    color:var(--indigo);
+    transform:translateY(-2px);
+  }
+
+  .btn-ghost:focus-visible{outline:2px solid var(--amber); outline-offset:4px;}
+
+  /* ---------- Footer ---------- */
+
+  footer{
+    padding-top:2.5rem;
+    padding-bottom:2.5rem;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:1.5rem;
+    font-size:0.85rem;
+    color:var(--muted);
+  }
+
+  @media (max-width:640px){
+    footer{
+      flex-direction:column;
+      text-align:center;
+      gap:1rem;
+    }
+  }
+
+  /* ---------- Utilities ---------- */
+
+  .gradient-text{
+    background:linear-gradient(135deg, var(--indigo), var(--emerald));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="spine">
+    <div class="spine-line" id="spineLine">
+      <div class="spine-node lit" data-node="hero"></div>
+      <div class="spine-node" data-node="servicios"></div>
+      <div class="spine-node" data-node="equipo"></div>
+      <div class="spine-node" data-node="mision"></div>
+      <div class="spine-node" data-node="contacto"></div>
+    </div>
+  </div>
+
+  <header class="nav">
+    <div class="wordmark">flujo<span>.</span></div>
+    <nav class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#equipo">Equipo</a>
+      <a href="#mision">Misión</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="hero" style="border-top:none;">
+    <span class="eyebrow">Automatización + IA</span>
+    <h1>Tu presencia digital, <em>sin fricción</em>, en todos tus canales.</h1>
+    <p class="hero-sub">Diseñamos y automatizamos la gestión de contenido de profesionales y marcas, para que estar en todas partes deje de ser un trabajo manual.</p>
+    <div class="hero-actions">
+      <a href="#contacto" class="btn-primary">Quiero automatizar mi contenido <span class="arrow">→</span></a>
+      <span class="hero-note">Respuesta en menos de 24&nbsp;hs</span>
+    </div>
+
+    <div class="hero-visual">
+      <img src="/mnt/user-data/uploads/Hero_section_background_image_for_AI_automation_landing_page__abstract_flowing_data_streams_and_neural_network_connections__mode.jpg" alt="Flujo de datos e IA" loading="lazy">
+    </div>
+
+    <svg class="waveform" viewBox="0 0 640 90" preserveAspectRatio="xMinYMid meet" aria-hidden="true">
+      <path d="M0,45 C40,45 40,15 80,15 C120,15 120,75 160,75 C200,75 200,25 240,25 C280,25 280,60 320,60 C360,60 360,20 400,20 C440,20 440,50 480,50 C520,50 520,35 560,35 C580,35 600,45 640,45" />
+      <circle cx="80" cy="15" r="3.5"/>
+      <circle cx="240" cy="25" r="3.5"/>
+      <circle cx="400" cy="20" r="3.5"/>
+      <circle cx="560" cy="35" r="3.5"/>
+    </svg>
+  </section>
+
+  <section id="servicios" data-section="servicios">
+    <div class="section-head">
+      <span class="eyebrow">Qué hacemos</span>
+      <h2>Tres piezas, <span class="gradient-text">un mismo sistema.</span></h2>
+    </div>
+
+    <div class="services-grid">
+      <article class="service-card">
+        <img src="/mnt/user-data/uploads/Generate__Set_of_modern_minimalist_icons_for_AI_automation_features__WhatsApp_integration_icon__content_generation_icon__omnicha.jpg" alt="Contenido" class="service-icon" loading="lazy" style="width:100%; max-width:200px; margin-bottom:1.5rem;">
+        <span class="tag">01 · Contenido</span>
+        <h3>Gestión multicanal</h3>
+        <p>Un mismo mensaje, adaptado y publicado en cada canal donde tu audiencia está, sin duplicar el trabajo cada vez.</p>
+      </article>
+      <article class="service-card">
+        <span class="tag">02 · Automatización</span>
+        <h3>Flujos con IA</h3>
+        <p>Automatizamos las tareas repetitivas de tu operación digital para que tu tiempo se vaya en decidir, no en ejecutar.</p>
+      </article>
+      <article class="service-card">
+        <span class="tag">03 · Estrategia</span>
+        <h3>Presencia digital</h3>
+        <p>Ordenamos qué decir, dónde y cuándo, con una estrategia pensada para tu marca y no para un algoritmo genérico.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="equipo" data-section="equipo">
+    <div class="section-head">
+      <span class="eyebrow">Nuestro equipo</span>
+      <h2><span class="gradient-text">Expertos</span> en automatización creativa.</h2>
+    </div>
+    
+    <div class="team-section">
+      <p style="color:var(--ink-soft); font-size:1.05rem; line-height:1.7;">Somos un equipo interdisciplinario de arquitectos, diseñadores y especialistas en automatización. Trabajamos con profesionales y marcas que buscan escalar su presencia digital sin sacrificar la calidad ni su voz única. Cada proyecto es una oportunidad para simplificar tu operación.</p>
+      
+      <div class="team-visual">
+        <img src="/mnt/user-data/uploads/Professional_diverse_team_of_architects__designers_and_consultants_working_with_digital_devices_in_modern_office__collaborative_.jpg" alt="Equipo de Flujo" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section id="mision" data-section="mision">
+    <div class="section-head">
+      <span class="eyebrow">Por qué existimos</span>
+      <h2>Misión y visión</h2>
+    </div>
+
+    <div class="mv-grid">
+      <div class="mv-block">
+        <span class="eyebrow">Misión</span>
+        <h3>Simplificar lo repetitivo.</h3>
+        <p>Aplicar automatización e inteligencia artificial para que profesionales y marcas gestionen su contenido sin perder tiempo en tareas repetitivas ni su voz propia en el proceso.</p>
+      </div>
+      <div class="mv-block">
+        <span class="eyebrow">Visión</span>
+        <h3>Que estar en todos lados sea simple.</h3>
+        <p>Ser el sistema de referencia para que cualquier profesional o marca pueda sostener una presencia digital consistente en múltiples canales, con la misma naturalidad con la que hoy sostiene una sola red.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="contacto" data-section="contacto">
+    <div class="section-head">
+      <span class="eyebrow">Empecemos</span>
+      <h2>Ideas automáticas. <br>Aprobación humana. <br>Siempre.</h2>
+    </div>
+
+    <div class="contact-wrap">
+      <div class="contact-copy">
+        <p>Escribinos y vemos juntos qué parte de tu operación digital tiene sentido automatizar primero. Sin compromisos, sin largos procesos.</p>
+      </div>
+      <button class="btn-ghost" id="contactBtn">Enviar mensaje →</button>
+    </div>
+  </section>
+
+  <footer>
+    <span>flujo — automatización e IA para presencia digital</span>
+    <span>© 2026</span>
+  </footer>
+
+</div>
+
+<script>
+  // Lights up spine nodes as their section enters view.
+  const nodes = document.querySelectorAll('.spine-node');
+  const nodeMap = {};
+  nodes.forEach(n => nodeMap[n.dataset.node] = n);
+
+  const sections = document.querySelectorAll('[data-section], #hero');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      const node = nodeMap[id];
+      if (!node) return;
+      if (entry.isIntersecting) {
+        node.classList.add('lit');
+      } else {
+        node.classList.remove('lit');
+      }
+    });
+  }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Placeholder contact button — to be wired to WhatsApp later.
+  document.getElementById('contactBtn').addEventListener('click', function(e){
+    e.preventDefault();
+    alert('Nos encantaría conectar con vos. Pronto vas a poder escribir directo por WhatsApp desde acá.');
+  });
+</script>
+
+</body>
+</html>
