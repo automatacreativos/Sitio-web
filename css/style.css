@@ -112,6 +112,8 @@ section{
 
     gap:45px;
 
+    height:100%;
+
 }
 
 .nav-links a{
@@ -121,6 +123,12 @@ section{
     font-weight:600;
 
     transition:.3s;
+
+    display:flex;
+
+    align-items:center;
+
+    height:100%;
 
 }
 
@@ -177,6 +185,12 @@ section{
     font-weight:600;
 
     transition:.3s;
+
+    display:flex;
+
+    align-items:center;
+
+    height:fit-content;
 
 }
 
