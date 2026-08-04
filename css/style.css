@@ -14,8 +14,8 @@ html{
 
 body{
     font-family:'Inter',sans-serif;
-    background:#050816;
-    color:#fff;
+    background:#F8FAFC;
+    color:#0F172A;
     line-height:1.7;
     overflow-x:hidden;
 }
@@ -57,9 +57,9 @@ NAVBAR
 
     backdrop-filter:blur(18px);
 
-    background:rgba(5,8,22,.55);
+    background:rgba(255,255,255,.82);
 
-    border-bottom:1px solid rgba(255,255,255,.05);
+    border-bottom:1px solid #E2E8F0;
 
 }
 
@@ -92,7 +92,7 @@ NAVBAR
 
 .nav-links a{
 
-    color:#cbd5e1;
+    color:#334155;
 
     transition:.3s;
 
@@ -102,7 +102,7 @@ NAVBAR
 
 .nav-links a:hover{
 
-    color:#ffffff;
+    color:#2563EB;
 
 }
 
@@ -152,11 +152,11 @@ HERO
 
     background:
 
-    radial-gradient(circle at top right,#2563eb55,transparent 45%),
+    linear-gradient(rgba(248,250,252,.88),rgba(248,250,252,.94)),
 
-    radial-gradient(circle at bottom left,#3b82f655,transparent 40%),
+    radial-gradient(circle at top right,#60A5FA33,transparent 45%),
 
-    #050816;
+    radial-gradient(circle at bottom left,#2563EB22,transparent 40%);
 
 }
 
@@ -210,7 +210,7 @@ HERO
 
 .hero p{
 
-    color:#94a3b8;
+    color:#475569;
 
     font-size:1.15rem;
 
@@ -331,7 +331,7 @@ section{
 
 .section-header p{
 
-    color:#94a3b8;
+    color:#475569;
 
     margin-top:18px;
 
@@ -365,7 +365,7 @@ section{
 
 .about-content p{
 
-    color:#94a3b8;
+    color:#475569;
 
     margin-bottom:18px;
 
@@ -395,9 +395,9 @@ CARDS
 
     padding:40px;
 
-    background:rgba(255,255,255,.04);
+    background:#FFFFFF;
 
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid #E2E8F0;
 
     border-radius:24px;
 
@@ -431,7 +431,7 @@ CARDS
 
 .service-card p{
 
-    color:#94a3b8;
+    color:#475569;
 
 }
 
@@ -451,7 +451,7 @@ TIMELINE
 
 .timeline-item{
 
-    background:#0f172a;
+    background:#FFFFFF;
 
     border-radius:20px;
 
@@ -503,9 +503,9 @@ TECH
 
     border-radius:18px;
 
-    background:#111827;
+    background:#FFFFFF;
 
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid #E2E8F0;
 
 }
 
@@ -570,11 +570,11 @@ form{
 input,
 textarea{
 
-    background:#0f172a;
+    background:#FFFFFF;
 
     border:1px solid rgba(255,255,255,.08);
 
-    color:white;
+    color:#0F172A;
 
     padding:18px;
 
@@ -600,7 +600,7 @@ footer{
 
     padding:90px 0 40px;
 
-    background:#020617;
+    background:#EAF2FF;
 
 }
 
@@ -625,7 +625,7 @@ footer{
 footer p,
 footer li{
 
-    color:#94a3b8;
+    color:#475569;
 
     margin-bottom:12px;
 
@@ -649,4 +649,11 @@ footer h4{
 
     border-top:1px solid rgba(255,255,255,.05);
 
+}
+/* Fondo claro */
+body{
+    background:
+    radial-gradient(circle at top right,#60A5FA22,transparent 30%),
+    radial-gradient(circle at bottom left,#2563EB18,transparent 30%),
+    #F8FAFC;
 }
