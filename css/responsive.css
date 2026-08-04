@@ -84,15 +84,15 @@
 
 @media (max-width:768px){
 
-    .navbar .container{
+.navbar .container{
 
-        flex-direction:column;
+    display:flex;
 
-        height:auto;
+    justify-content:space-between;
 
-        padding:20px 0;
+    align-items:center;
 
-    }
+}
 
     .nav-links{
 
