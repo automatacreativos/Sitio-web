@@ -1,78 +1,37 @@
-/* ==========================================
-   AUTOMATACREATIVOS
-   MAIN.JS
-========================================== */
+// ===========================
+// HAMBURGER MENU
+// ===========================
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    // Navbar transparente al inicio
-
-    const navbar = document.querySelector(".navbar");
-
-    window.addEventListener("scroll", () => {
-
-        if (window.scrollY > 60) {
-
-            navbar.style.background = "rgba(5,8,22,.90)";
-            navbar.style.boxShadow = "0 10px 40px rgba(0,0,0,.35)";
-
-        } else {
-
-            navbar.style.background = "rgba(5,8,22,.55)";
-            navbar.style.boxShadow = "none";
-
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    // Toggle del menú al hacer click en el hamburger
+    if(hamburger) {
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+    }
+    
+    // Cerrar menú cuando se hace click en un link
+    if(navLinks) {
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
+    
+    // Cerrar menú cuando se hace scroll
+    window.addEventListener('scroll', function() {
+        if(hamburger && navLinks) {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
         }
-
     });
-
-    // Animación al hacer scroll
-
-    const observer = new IntersectionObserver((entries) => {
-
-        entries.forEach((entry) => {
-
-            if (entry.isIntersecting) {
-
-                entry.target.classList.add("show");
-
-            }
-
-        });
-
-    }, {
-        threshold: 0.15
-    });
-
-    document.querySelectorAll(
-        ".service-card, .timeline-item, .tech-card, .about-image, .about-content, .cta-box"
-    ).forEach((el) => {
-
-        el.classList.add("hidden");
-
-        observer.observe(el);
-
-    });
-
-    // Scroll suave
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-        anchor.addEventListener("click", function(e){
-
-            e.preventDefault();
-
-            const target = document.querySelector(this.getAttribute("href"));
-
-            if(target){
-
-                target.scrollIntoView({
-                    behavior:"smooth"
-                });
-
-            }
-
-        });
-
-    });
-
 });
+
