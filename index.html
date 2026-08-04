@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flujo — Automatización e IA para tu presencia digital</title>
+<title>Autómata Creativos — Automatización e IA para tu presencia digital</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -389,14 +389,6 @@
     line-height:1.6;
   }
 
-  /* Service icons */
-  .service-icon{
-    width:60px;
-    height:60px;
-    margin-bottom:1.2rem;
-    display:block;
-  }
-
   /* ---------- Team Section ---------- */
 
   .team-section{
@@ -517,6 +509,7 @@
     white-space:nowrap;
     cursor:pointer;
     background:transparent;
+    display:inline-block;
   }
 
   .btn-ghost:hover{
@@ -575,7 +568,7 @@
   </div>
 
   <header class="nav">
-    <div class="wordmark">flujo<span>.</span></div>
+    <div class="wordmark">autómata creativos<span>.</span></div>
     <nav class="nav-links">
       <a href="#servicios">Servicios</a>
       <a href="#equipo">Equipo</a>
@@ -594,7 +587,7 @@
     </div>
 
     <div class="hero-visual">
-      <img src="/mnt/user-data/uploads/Hero_section_background_image_for_AI_automation_landing_page__abstract_flowing_data_streams_and_neural_network_connections__mode.jpg" alt="Flujo de datos e IA" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" alt="Flujo de datos e IA" loading="lazy">
     </div>
 
     <svg class="waveform" viewBox="0 0 640 90" preserveAspectRatio="xMinYMid meet" aria-hidden="true">
@@ -614,7 +607,6 @@
 
     <div class="services-grid">
       <article class="service-card">
-        <img src="/mnt/user-data/uploads/Generate__Set_of_modern_minimalist_icons_for_AI_automation_features__WhatsApp_integration_icon__content_generation_icon__omnicha.jpg" alt="Contenido" class="service-icon" loading="lazy" style="width:100%; max-width:200px; margin-bottom:1.5rem;">
         <span class="tag">01 · Contenido</span>
         <h3>Gestión multicanal</h3>
         <p>Un mismo mensaje, adaptado y publicado en cada canal donde tu audiencia está, sin duplicar el trabajo cada vez.</p>
@@ -642,7 +634,7 @@
       <p style="color:var(--ink-soft); font-size:1.05rem; line-height:1.7;">Somos un equipo interdisciplinario de arquitectos, diseñadores y especialistas en automatización. Trabajamos con profesionales y marcas que buscan escalar su presencia digital sin sacrificar la calidad ni su voz única. Cada proyecto es una oportunidad para simplificar tu operación.</p>
       
       <div class="team-visual">
-        <img src="/mnt/user-data/uploads/Professional_diverse_team_of_architects__designers_and_consultants_working_with_digital_devices_in_modern_office__collaborative_.jpg" alt="Equipo de Flujo" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" alt="Equipo de trabajo" loading="lazy">
       </div>
     </div>
   </section>
@@ -677,19 +669,19 @@
       <div class="contact-copy">
         <p>Escribinos y vemos juntos qué parte de tu operación digital tiene sentido automatizar primero. Sin compromisos, sin largos procesos.</p>
       </div>
-      <button class="btn-ghost" id="contactBtn">Enviar mensaje →</button>
+      <!-- Reemplaza "tu-correo@ejemplo.com" por tu email real -->
+      <a href="mailto:tu-correo@ejemplo.com?subject=Consulta%20sobre%20Automatizaci%C3%B3n" class="btn-ghost" id="contactBtn">Enviar correo electrónico →</a>
     </div>
   </section>
 
   <footer>
-    <span>flujo — automatización e IA para presencia digital</span>
+    <span>autómata creativos — automatización e IA para presencia digital</span>
     <span>© 2026</span>
   </footer>
 
 </div>
 
 <script>
-  // Lights up spine nodes as their section enters view.
   const nodes = document.querySelectorAll('.spine-node');
   const nodeMap = {};
   nodes.forEach(n => nodeMap[n.dataset.node] = n);
@@ -710,12 +702,6 @@
   }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
 
   sections.forEach(s => observer.observe(s));
-
-  // Placeholder contact button — to be wired to WhatsApp later.
-  document.getElementById('contactBtn').addEventListener('click', function(e){
-    e.preventDefault();
-    alert('Nos encantaría conectar con vos. Pronto vas a poder escribir directo por WhatsApp desde acá.');
-  });
 </script>
 
 </body>
