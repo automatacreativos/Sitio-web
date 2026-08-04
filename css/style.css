@@ -295,9 +295,22 @@ section{
 
 .hero-image img{
 
+    width:100%;
+
     border-radius:24px;
 
-    box-shadow:0 30px 70px rgba(37,99,235,.18);
+    box-shadow:
+        0 25px 70px rgba(37,99,235,.18);
+
+    border:1px solid #DCEAFE;
+
+    transition:.4s;
+
+}
+
+.hero-image img:hover{
+
+    transform:translateY(-8px) scale(1.02);
 
 }
 
