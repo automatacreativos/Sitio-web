@@ -233,7 +233,7 @@
 <header>
   <div class="eyebrow">Relevamiento de marca · paso previo a la IA</div>
   <h1>Base de Conocimiento de Marca</h1>
-  <p>Completá este formulario con la información en bruto del cliente. Al final vas a poder generar un prompt listo para pegar en tu IA (o en tu flujo de n8n), que devuelve la base de conocimiento redactada y estructurada — igual que la de Aldana.</p>
+  <p>Completá este formulario con tu información. Al final vamos a poder generar un prompt listo para pegar en tu base de datos. Esto nos generará la base de conocimientos para nutrir a nuestra IA y generar temas y contenidos</p>
 </header>
 
 <main>
@@ -243,21 +243,21 @@
     <div class="field row2">
       <div>
         <label for="nombre">Nombre y apellido</label>
-        <input type="text" id="nombre" placeholder="Ej: Aldana Cabanilla">
+        <input type="text" id="nombre" placeholder="Ej: Nombre Apellido">
       </div>
       <div>
         <label for="profesion">Profesión / rubro</label>
-        <input type="text" id="profesion" placeholder="Ej: Arquitecta matriculada">
+        <input type="text" id="profesion" placeholder="Ej: Tu profesión">
       </div>
     </div>
   </section>
 
   <section class="block">
     <div class="block-head"><span class="block-num">02</span><h2>Perfil / Bio</h2></div>
-    <p class="block-hint">Contá en pocas líneas quién es, a qué se dedica y cuál es su diferencial. No hace falta pulirlo — la IA lo va a redactar después.</p>
+    <p class="block-hint">Contá en pocas líneas quién es, a qué te dedicas y cuál es tu diferencial. No hace falta pulirlo — la IA lo va a redactar después.</p>
     <div class="field">
       <label for="bio">Descripción libre</label>
-      <textarea id="bio" placeholder="Ej: se dedica a proyectos de arquitectura, le importa que lo que diseña se pueda construir de verdad, conecta el plano con la obra..."></textarea>
+      <textarea id="bio" placeholder="Ej: Me dedico a proyectos de arquitectura, me importa que lo que diseña se pueda construir de verdad, conectar el plano con la obra..."></textarea>
     </div>
   </section>
 
@@ -270,9 +270,9 @@
 
   <section class="block">
     <div class="block-head"><span class="block-num">04</span><h2>Reglas de marca / valores</h2></div>
-    <p class="block-hint">Principios o criterios que guían su forma de trabajar o de comunicar (ej: sustentabilidad, estrategia de contenido, transparencia con el cliente).</p>
+    <p class="block-hint">Principios o criterios que guían tu forma de trabajar o de comunicar (ej: sustentabilidad, estrategia de contenido, transparencia con el cliente).</p>
     <div id="rules-list"></div>
-    <button type="button" class="add-btn" onclick="addRepeatItem('rules-list','Ej: Prioriza materiales locales y bajo impacto')">+ agregar regla</button>
+    <button type="button" class="add-btn" onclick="addRepeatItem('rules-list','Ej: Priorizo materiales locales y de bajo impacto')">+ agregar regla</button>
   </section>
 
   <section class="block">
@@ -299,7 +299,7 @@
   <section class="block">
     <div class="block-head"><span class="block-num">06</span><h2>Público objetivo</h2></div>
     <div class="field">
-      <label for="audiencia">¿A quién le habla?</label>
+      <label for="audiencia">¿A quién te dirigís? Si no tenés en claro esto, comunicate con nosotros y lo resolvemos juntos</label>
       <textarea id="audiencia" placeholder="Ej: colegas del sector, estudios que buscan asociarse, desarrolladoras e inversores"></textarea>
     </div>
   </section>
