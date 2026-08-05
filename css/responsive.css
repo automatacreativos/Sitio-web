@@ -90,7 +90,7 @@
         top:0;
         left:0;
         width:100%;
-        z-index:;
+        z-index:1000;
     }
 
     .navbar .container{
@@ -115,7 +115,7 @@
         background:none;
         border:none;
         padding:10px;
-        z-index:;
+        z-index:1000;
     }
 
     .hamburger span{
@@ -230,5 +230,25 @@
     .hero-image{ margin-top:30px; }
 
     .tech-grid{ grid-template-columns:1fr; }
+
+}
+
+/* ===========================
+   FIX Z-INDEX MOBILE
+=========================== */
+
+@media (max-width:768px){
+
+    .hero{
+        z-index:1 !important;
+    }
+
+    .hero-grid{
+        z-index:1 !important;
+    }
+
+    .hero::before{
+        z-index:0 !important;
+    }
 
 }
