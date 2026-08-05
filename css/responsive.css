@@ -154,7 +154,7 @@
         overflow:hidden !important;
         transition:max-height .35s ease !important;
         box-shadow:0 10px 30px rgba(15,23,42,.10) !important;
-        z-index:999 !important;
+        z-index:9999 !important;
         gap:0 !important;
         border-bottom:1px solid #E2E8F0 !important;
     }
