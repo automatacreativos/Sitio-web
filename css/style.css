@@ -84,22 +84,44 @@ section{
 
     height:90px;
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
 }
 
-.logo img{
+.logo img {
+    height: 48px;
+    width: auto;
+    background: white;
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(15,23,42,.08);
+}
 
-    height:50px;
+/* Nombre de la empresa */
+.logo-text {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0F172A;
+    letter-spacing: -0.5px;
+    line-height: 1;
+}
 
-    width:auto;
+.logo-text span {
+    color: #2563EB; /* Color azul primario de tu paleta */
+}
 
-    background:white;
-
-    padding:10px;
-
-    border-radius:14px;
-
-    box-shadow:0 10px 30px rgba(15,23,42,.08);
-
+/* Limpieza de selector duplicado */
+.nav-links a {
+    color: #334155;
+    font-weight: 600;
+    transition: .3s;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    position: relative;
 }
 
 .nav-links{
