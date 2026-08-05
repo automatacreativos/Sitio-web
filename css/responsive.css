@@ -90,14 +90,14 @@
         top:0;
         left:0;
         width:100%;
-        z-index:1000;
+        z-index:9999;
     }
 
     .navbar .container{
         display:flex !important;
         justify-content:space-between !important;
         align-items:center !important;
-        height:70px !important;
+        height:80px !important;
         padding:0 !important;
         gap:0 !important;
     }
