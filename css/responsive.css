@@ -84,7 +84,7 @@
 
 @media (max-width:768px){
 
-    /* Navbar */
+    /* Navbar Header */
     .navbar{
         position:fixed;
         top:0;
@@ -93,7 +93,6 @@
         z-index:1000;
     }
 
-    /* Navbar Container (agrega márgenes laterales en celulares) */
     .navbar .container{
         display:flex !important;
         justify-content:space-between !important;
@@ -103,10 +102,10 @@
         gap:0 !important;
     }
 
-    /* Ocultar botón "Agendá tu reunión" */
+    /* Ocultar botón "Agendá tu reunión" en mobile */
     .btn-nav{ display:none !important; }
 
-    /* Hamburger */
+    /* Botón Hamburguesa */
     .hamburger{
         display:flex !important;
         flex-direction:column;
@@ -140,34 +139,41 @@
         transform:rotate(-45deg) translate(5px, -8px);
     }
 
-    /* Menú desplegable corregido */
+    /* Menú desplegable FIJO para las 4 opciones */
     .nav-links{
         display:flex !important;
         position:fixed !important;
-        top:80px !important;
+        top:80px !important;          /* Se despliega justo debajo de la navbar */
         left:0 !important;
         right:0 !important;
         flex-direction:column !important;
-        justify-content:flex-start !important; /* Alinea los ítems desde arriba */
+        justify-content:flex-start !important; /* Fuerza a alinear los ítems desde arriba */
         align-items:stretch !important;
-        background:#FFFFFF !important;
-        padding:10px 0 !important;
-        margin:0 !important;
+        height:auto !important;        /* Cancela el height: 100% de desktop */
+        min-height:0 !important;
         max-height:0 !important;
         overflow:hidden !important;
         transition:max-height .35s ease !important;
-        box-shadow:0 10px 30px rgba(15,23,42,.10) !important;
+        background:#FFFFFF !important;
+        box-shadow:0 15px 30px rgba(15,23,42,.12) !important;
         z-index:9999 !important;
-        gap:0 !important;
+        padding:0 !important;
+        margin:0 !important;
         border-bottom:1px solid #E2E8F0 !important;
     }
 
+    /* Al desplegarse entra todo sobrado sin scroll */
     .nav-links.active{
-        max-height:300px !important;
+        max-height:320px !important;   /* Espacio de sobra para las 4 opciones */
+        padding:10px 0 !important;
     }
 
     .nav-links li{
+        display:block !important;
+        width:100% !important;
         border-bottom:1px solid #F1F5F9 !important;
+        padding:0 !important;
+        margin:0 !important;
     }
 
     .nav-links li:last-child{
@@ -176,14 +182,16 @@
 
     .nav-links a{
         display:block !important;
-        padding:16px 24px !important;
+        width:100% !important;
+        height:auto !important;       /* Desactiva la altura 100% de desktop */
+        padding:15px 20px !important;  /* Tamaño cómodo para tocar con el dedo */
         color:#334155 !important;
         font-weight:600 !important;
+        font-size:1.05rem !important;
         text-align:center !important;
-        height:auto !important;
     }
 
-    /* Hero */
+    /* Adaptación del resto de las secciones */
     section{ padding:80px 0; }
 
     .hero{ padding-top:100px; }
