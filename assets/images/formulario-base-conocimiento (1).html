@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Relevamiento — Base de Conocimiento de Marca</title>
+<style>
+  :root{
+    --ink:#1c2321;
+    --paper:#f6f4ef;
+    --paper-alt:#ffffff;
+    --line:#d8d3c6;
+    --accent:#2f5d50;
+    --accent-soft:#e4ede9;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Georgia','Iowan Old Style',serif;
+    line-height:1.5;
+    padding:0 0 80px;
+  }
+  header{
+    border-bottom:1px solid var(--line);
+    padding:48px 24px 32px;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:10px;
+  }
+  h1{
+    font-size:clamp(28px,4vw,38px);
+    margin:0 0 12px;
+    font-weight:400;
+    letter-spacing:-0.01em;
+  }
+  header p{
+    max-width:56ch;
+    color:#4a5350;
+    font-size:15px;
+  }
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  section.block{
+    border-bottom:1px solid var(--line);
+    padding:36px 0;
+  }
+  .block-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:6px;
+  }
+  .block-num{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--accent);
+    border:1px solid var(--accent);
+    border-radius:100px;
+    padding:2px 9px;
+    flex-shrink:0;
+  }
+  .block-head h2{
+    font-size:19px;
+    font-weight:600;
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  .block-hint{
+    font-size:13px;
+    color:#6b746f;
+    margin:0 0 20px 42px;
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  .field{
+    margin:16px 0 16px 42px;
+  }
+  label{
+    display:block;
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-size:13px;
+    font-weight:600;
+    color:#374039;
+    margin-bottom:6px;
+  }
+  input[type="text"], textarea, select{
+    width:100%;
+    border:1px solid var(--line);
+    background:var(--paper-alt);
+    border-radius:6px;
+    padding:10px 12px;
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-size:14.5px;
+    color:var(--ink);
+    resize:vertical;
+  }
+  input[type="text"]:focus, textarea:focus, select:focus{
+    outline:2px solid var(--accent);
+    outline-offset:1px;
+    border-color:var(--accent);
+  }
+  textarea{min-height:70px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media (max-width:560px){ .row2{grid-template-columns:1fr;} .block-hint,.field{margin-left:0;} }
+
+  .repeat-item{
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:14px 16px;
+    margin-bottom:12px;
+    background:var(--paper-alt);
+    position:relative;
+  }
+  .repeat-item .remove-btn{
+    position:absolute;
+    top:10px; right:10px;
+    background:none;
+    border:none;
+    color:#a24b3f;
+    font-family:var(--mono);
+    font-size:11px;
+    cursor:pointer;
+    text-decoration:underline;
+  }
+  .add-btn{
+    font-family:var(--mono);
+    font-size:12.5px;
+    background:var(--accent-soft);
+    border:1px dashed var(--accent);
+    color:var(--accent);
+    border-radius:6px;
+    padding:8px 14px;
+    cursor:pointer;
+    margin-left:0;
+  }
+  .add-btn:hover{background:#d7e6df;}
+
+  .chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .chip{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-size:13px;
+    border:1px solid var(--line);
+    background:var(--paper-alt);
+    border-radius:100px;
+    padding:6px 13px;
+    cursor:pointer;
+    user-select:none;
+    transition:.15s;
+  }
+  .chip.active{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#fff;
+  }
+
+  .generate-zone{
+    padding:40px 24px 0;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .generate-btn{
+    width:100%;
+    background:var(--ink);
+    color:#f6f4ef;
+    border:none;
+    padding:16px;
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    border-radius:8px;
+    cursor:pointer;
+  }
+  .generate-btn:hover{background:#333d38;}
+
+  #output-wrap{display:none; margin-top:22px;}
+  #output-wrap h3{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-size:14px;
+    margin-bottom:8px;
+  }
+  #output{
+    width:100%;
+    min-height:340px;
+    font-family:var(--mono);
+    font-size:12.5px;
+    line-height:1.6;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:16px;
+    background:#fff;
+    white-space:pre-wrap;
+  }
+  .copy-btn{
+    margin-top:10px;
+    font-family:var(--mono);
+    font-size:12px;
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    padding:9px 16px;
+    border-radius:6px;
+    cursor:pointer;
+  }
+  .copy-btn:hover{background:#254c41;}
+  .copied-msg{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--accent);
+    margin-left:10px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Relevamiento de marca · paso previo a la IA</div>
+  <h1>Base de Conocimiento de Marca</h1>
+  <p>Completá este formulario con la información en bruto del cliente. Al final vas a poder generar un prompt listo para pegar en tu IA (o en tu flujo de n8n), que devuelve la base de conocimiento redactada y estructurada — igual que la de Aldana.</p>
+</header>
+
+<main>
+
+  <section class="block">
+    <div class="block-head"><span class="block-num">01</span><h2>Datos generales</h2></div>
+    <div class="field row2">
+      <div>
+        <label for="nombre">Nombre y apellido</label>
+        <input type="text" id="nombre" placeholder="Ej: Aldana Cabanilla">
+      </div>
+      <div>
+        <label for="profesion">Profesión / rubro</label>
+        <input type="text" id="profesion" placeholder="Ej: Arquitecta matriculada">
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><span class="block-num">02</span><h2>Perfil / Bio</h2></div>
+    <p class="block-hint">Contá en pocas líneas quién es, a qué se dedica y cuál es su diferencial. No hace falta pulirlo — la IA lo va a redactar después.</p>
+    <div class="field">
+      <label for="bio">Descripción libre</label>
+      <textarea id="bio" placeholder="Ej: se dedica a proyectos de arquitectura, le importa que lo que diseña se pueda construir de verdad, conecta el plano con la obra..."></textarea>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><span class="block-num">03</span><h2>Habilidades y fortalezas</h2></div>
+    <p class="block-hint">Agregá una por una. Un título corto + una idea de qué la hace valiosa.</p>
+    <div id="skills-list"></div>
+    <button type="button" class="add-btn" onclick="addRepeatItem('skills-list','Ej: Manejo de AutoCAD y Revit')">+ agregar habilidad</button>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><span class="block-num">04</span><h2>Reglas de marca / valores</h2></div>
+    <p class="block-hint">Principios o criterios que guían su forma de trabajar o de comunicar (ej: sustentabilidad, estrategia de contenido, transparencia con el cliente).</p>
+    <div id="rules-list"></div>
+    <button type="button" class="add-btn" onclick="addRepeatItem('rules-list','Ej: Prioriza materiales locales y bajo impacto')">+ agregar regla</button>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><span class="block-num">05</span><h2>Tono de voz</h2></div>
+    <p class="block-hint">Elegí las que apliquen y sumá matices en el campo libre.</p>
+    <div class="field">
+      <div class="chips" id="tone-chips">
+        <div class="chip" data-val="Técnico">Técnico</div>
+        <div class="chip" data-val="Cercano">Cercano</div>
+        <div class="chip" data-val="Inspirador">Inspirador</div>
+        <div class="chip" data-val="Formal">Formal</div>
+        <div class="chip" data-val="Informal">Informal</div>
+        <div class="chip" data-val="Directo">Directo</div>
+        <div class="chip" data-val="Autoridad">Con autoridad</div>
+        <div class="chip" data-val="Cercania de asesor">Cercanía de asesor</div>
+      </div>
+    </div>
+    <div class="field">
+      <label for="tone-extra">Matices adicionales (opcional)</label>
+      <textarea id="tone-extra" placeholder="Ej: habla como un director de obra pero cercano, sin sonar corporativo"></textarea>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head"><span class="block-num">06</span><h2>Público objetivo</h2></div>
+    <div class="field">
+      <label for="audiencia">¿A quién le habla?</label>
+      <textarea id="audiencia" placeholder="Ej: colegas del sector, estudios que buscan asociarse, desarrolladoras e inversores"></textarea>
+    </div>
+  </section>
+
+  <section class="block" style="border-bottom:none;">
+    <div class="block-head"><span class="block-num">07</span><h2>Redes y estrategia</h2></div>
+    <div class="field">
+      <label>Plataformas prioritarias</label>
+      <div class="chips" id="platform-chips">
+        <div class="chip" data-val="Instagram">Instagram</div>
+        <div class="chip" data-val="LinkedIn">LinkedIn</div>
+        <div class="chip" data-val="TikTok">TikTok</div>
+        <div class="chip" data-val="YouTube">YouTube</div>
+        <div class="chip" data-val="WhatsApp">WhatsApp</div>
+      </div>
+    </div>
+    <div class="field">
+      <label for="estrategia">Lógica entre plataformas (opcional)</label>
+      <textarea id="estrategia" placeholder="Ej: capturar atención visual en Instagram y redirigir a debate técnico en LinkedIn"></textarea>
+    </div>
+  </section>
+
+</main>
+
+<div class="generate-zone">
+  <button class="generate-btn" onclick="generatePrompt()">Generar prompt para la IA →</button>
+
+  <div id="output-wrap">
+    <h3>Prompt listo para copiar</h3>
+    <textarea id="output" readonly></textarea>
+    <button class="copy-btn" onclick="copyOutput()">Copiar</button>
+    <span class="copied-msg" id="copied-msg" style="display:none;">¡Copiado!</span>
+  </div>
+</div>
+
+<script>
+function addRepeatItem(listId, placeholder){
+  const list = document.getElementById(listId);
+  const item = document.createElement('div');
+  item.className = 'repeat-item';
+  item.innerHTML = `
+    <button type="button" class="remove-btn" onclick="this.parentElement.remove()">quitar</button>
+    <div class="field" style="margin:0 0 10px;">
+      <label>Título</label>
+      <input type="text" class="item-title" placeholder="${placeholder}">
+    </div>
+    <div class="field" style="margin:0;">
+      <label>¿Por qué importa? (breve)</label>
+      <textarea class="item-desc" style="min-height:50px;" placeholder="Una o dos frases sueltas, sin pulir"></textarea>
+    </div>
+  `;
+  list.appendChild(item);
+}
+// arranca con un item vacío en cada lista
+addRepeatItem('skills-list','Ej: Manejo de AutoCAD y Revit');
+addRepeatItem('rules-list','Ej: Prioriza materiales locales y bajo impacto');
+
+document.querySelectorAll('.chip').forEach(chip=>{
+  chip.addEventListener('click', ()=> chip.classList.toggle('active'));
+});
+
+function getRepeatItems(listId){
+  const items = [];
+  document.querySelectorAll(`#${listId} .repeat-item`).forEach(el=>{
+    const title = el.querySelector('.item-title').value.trim();
+    const desc = el.querySelector('.item-desc').value.trim();
+    if(title || desc) items.push({title, desc});
+  });
+  return items;
+}
+
+function getActiveChips(containerId){
+  return Array.from(document.querySelectorAll(`#${containerId} .chip.active`)).map(c=>c.dataset.val);
+}
+
+function generatePrompt(){
+  const nombre = document.getElementById('nombre').value.trim() || '[sin nombre]';
+  const profesion = document.getElementById('profesion').value.trim() || '[sin especificar]';
+  const bio = document.getElementById('bio').value.trim() || '[sin datos]';
+  const skills = getRepeatItems('skills-list');
+  const rules = getRepeatItems('rules-list');
+  const tones = getActiveChips('tone-chips');
+  const toneExtra = document.getElementById('tone-extra').value.trim();
+  const audiencia = document.getElementById('audiencia').value.trim() || '[sin datos]';
+  const platforms = getActiveChips('platform-chips');
+  const estrategia = document.getElementById('estrategia').value.trim();
+
+  let txt = '';
+  txt += `Actuá como estratega de contenido y branding. A partir de la información en bruto de abajo, generá una BASE DE CONOCIMIENTO DE MARCA completa para ${nombre} (${profesion}), lista para usarse como input de un sistema de generación automática de posts para redes sociales.\n\n`;
+  txt += `Para cada fila, escribí un texto de 2 a 4 oraciones, en un estilo redactado y profesional (no en bullets), tal como se ve en el ejemplo de estructura al final. Devolvé el resultado en una tabla con columnas: Campo | Categoría | Contenido.\n\n`;
+  txt += `Las categorías posibles son: Bio, Habilidades, Reglas de Marca, Tono de voz, Público objetivo.\n\n`;
+  txt += `--- INFORMACIÓN EN BRUTO ---\n\n`;
+  txt += `Nombre: ${nombre}\nProfesión / rubro: ${profesion}\n\n`;
+  txt += `Bio (en bruto):\n${bio}\n\n`;
+
+  txt += `Habilidades (en bruto):\n`;
+  if(skills.length){
+    skills.forEach(s=> txt += `- ${s.title}${s.desc ? ': '+s.desc : ''}\n`);
+  } else { txt += `[sin datos]\n`; }
+  txt += `\n`;
+
+  txt += `Reglas de marca / valores (en bruto):\n`;
+  if(rules.length){
+    rules.forEach(r=> txt += `- ${r.title}${r.desc ? ': '+r.desc : ''}\n`);
+  } else { txt += `[sin datos]\n`; }
+  txt += `\n`;
+
+  txt += `Tono de voz deseado: ${tones.length ? tones.join(', ') : '[sin especificar]'}${toneExtra ? '. Matices: '+toneExtra : ''}\n\n`;
+  txt += `Público objetivo (en bruto):\n${audiencia}\n\n`;
+  txt += `Plataformas prioritarias: ${platforms.length ? platforms.join(', ') : '[sin especificar]'}${estrategia ? '\nLógica entre plataformas: '+estrategia : ''}\n\n`;
+
+  txt += `--- EJEMPLO DE ESTRUCTURA Y NIVEL DE REDACCIÓN ESPERADO ---\n`;
+  txt += `Campo: "Optimización con AutoCAD y Revit" | Categoría: Habilidades | Contenido: "Dominio experto de herramientas de representación técnica como AutoCAD para planimetría de alta precisión y Revit (BIM) para el modelado tridimensional integrado. Su enfoque no es solo dibujar, sino maquetar digitalmente previendo interferencias estructurales, cómputos métricos reales y detalles constructivos antes de pisar el terreno."\n\n`;
+  txt += `Generá una fila por cada Bio, cada Habilidad, cada Regla de Marca, el Tono de voz y el Público objetivo. Mantené el mismo nivel de detalle y prolijidad que el ejemplo.`;
+
+  document.getElementById('output').value = txt;
+  document.getElementById('output-wrap').style.display = 'block';
+  document.getElementById('output-wrap').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function copyOutput(){
+  const out = document.getElementById('output');
+  out.select();
+  document.execCommand('copy');
+  const msg = document.getElementById('copied-msg');
+  msg.style.display = 'inline';
+  setTimeout(()=> msg.style.display='none', 1800);
+}
+</script>
+
+</body>
+</html>
