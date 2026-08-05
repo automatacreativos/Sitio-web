@@ -181,15 +181,15 @@
     }
 
     .nav-links a{
-        display:block !important;
-        width:100% !important;
-        height:auto !important;       /* Desactiva la altura 100% de desktop */
-        padding:15px 20px !important;  /* Tamaño cómodo para tocar con el dedo */
-        color:#334155 !important;
-        font-weight:600 !important;
-        font-size:1.05rem !important;
-        text-align:center !important;
-    }
+    display:block !important;
+    width:100% !important;
+    height:auto !important;
+    padding:12px 20px !important; /* De 15px a 12px reduce el alto total */
+    color:#334155 !important;
+    font-weight:600 !important;
+    font-size:1.05rem !important;
+    text-align:center !important;
+}
 
     /* Adaptación del resto de las secciones */
     section{ padding:80px 0; }
