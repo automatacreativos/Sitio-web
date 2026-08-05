@@ -85,20 +85,20 @@
 @media (max-width:768px){
 
     /* Navbar */
-    .navbar{
+   .navbar{
         position:fixed;
         top:0;
         left:0;
         width:100%;
-        z-index:1000;
+        z-index:1000; /* CORREGIDO */
     }
 
-    .navbar .container{
+ .navbar .container{
         display:flex !important;
         justify-content:space-between !important;
         align-items:center !important;
         height:80px !important;
-        padding:0 !important;
+        padding:0 20px !important;
         gap:0 !important;
     }
 
@@ -106,7 +106,7 @@
     .btn-nav{ display:none !important; }
 
     /* Hamburger */
-    .hamburger{
+   .hamburger{
         display:flex !important;
         flex-direction:column;
         justify-content:center;
@@ -115,7 +115,7 @@
         background:none;
         border:none;
         padding:10px;
-        z-index:1000;
+        z-index:1001; /* CORREGIDO */
     }
 
     .hamburger span{
@@ -218,6 +218,14 @@
 =========================== */
 
 @media (max-width:480px){
+
+    .logo-text {
+        font-size: 1.05rem;
+    }
+
+    .logo img {
+        height: 40px;
+    }
 
     .container{ width:92%; }
 
