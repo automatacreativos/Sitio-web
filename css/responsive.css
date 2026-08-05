@@ -164,7 +164,7 @@
 
     /* Al desplegarse entra todo sobrado sin scroll */
     .nav-links.active{
-        max-height:320px !important;   /* Espacio de sobra para las 4 opciones */
+        max-height:330px !important;   /* Espacio de sobra para las 4 opciones */
         padding:10px 0 !important;
     }
 
