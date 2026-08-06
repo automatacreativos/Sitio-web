@@ -451,6 +451,9 @@ section{
     color:#334155;
     transition:.3s;
     box-shadow:0 8px 24px rgba(15,23,42,.04);
+   text-decoration: none; /* Elimina el subrayado por defecto de los enlaces */
+  color: inherit;         /* Mantiene el color de texto que tenías configurado */
+  display: block;        /* O inline-block / flex según la estructura de tu grid */
 }
 
 .tech-card:hover{
