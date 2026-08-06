@@ -1,46 +1,58 @@
-// 1. Guardamos la función de copia original de tu HTML
-const copiarOriginal = window.copyOutput;
+// Esperamos a que la página cargue por completo
+document.addEventListener('DOMContentLoaded', () => {
+    // Buscamos el elemento interactivo en tu HTML que ejecuta la copia
+    const botonCopiar = document.querySelector('[onclick*="copyOutput"]') || document.getElementById('copied-msg')?.parentElement;
 
-// 2. Redefinimos la función para que haga lo de antes Y ADEMÁS envíe a n8n
-window.copyOutput = function() {
-    
-    // Ejecuta tu código original (seleccionar, copiar y mostrar el mensaje "¡Copiado!")
-    if (typeof copiarOriginal === 'function') {
-        copiarOriginal();
+    if (botonCopiar) {
+        botonCopiar.addEventListener('click', () => {
+            // Le damos 100 milisegundos para que el script original actúe primero
+            setTimeout(enviarAn8n, 100);
+        });
+    } else {
+        // Respaldo automático: si el botón no responde, interceptamos la función copyOutput directamente
+        const originalCopyOutput = window.copyOutput;
+        window.copyOutput = function() {
+            if (typeof originalCopyOutput === 'function') originalCopyOutput();
+            setTimeout(enviarAn8n, 100);
+        };
     }
+});
 
-    // Captura el texto del prompt generado desde el elemento con ID 'output'
+function enviarAn8n() {
+    // Captura el texto generado en la caja con ID 'output'
     const promptTexto = document.getElementById('output')?.value;
     
     if (!promptTexto) {
-        console.error('No se encontró texto en el campo "output" para enviar a n8n.');
+        console.warn('El campo "output" está vacío o no se encontró en este momento.');
         return;
     }
 
-    // --- CONFIGURACIÓN DE URL N8N ---
+    // --- CONFIGURACIÓN DE ENLACE N8N ---
     // MODO TEST: Mantener 'webhook-test'
-    // MODO PRODUCCIÓN: Cambiar 'webhook-test' por 'webhook'
-    const urlWebhookN8n = 'https://n8n.cloud';
+    // MODO PRODUCCIÓN: Reemplazar 'webhook-test' por 'webhook' cuando actives el flujo definitivo
+    const urlWebhookN8n = 'https://fc-automation.app.n8n.cloud/webhook-test/respuestaformulario220293';
 
-    // 3. Enviamos el prompt al webhook de n8n en segundo plano
+    // Formateamos los datos para evitar bloqueos de CORS del navegador
+    const datosEnvio = new URLSearchParams();
+    datosEnvio.append('prompt', promptTexto);
+    datosEnvio.append('fecha', new Date().toISOString());
+
+    // Ejecutamos el envío silencioso a tu webhook
     fetch(urlWebhookN8n, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify({ 
-            prompt: promptTexto,
-            fecha_envio: new Date().toISOString()
-        })
+        body: datosEnvio.toString()
     })
     .then(respuesta => {
         if (respuesta.ok) {
-            console.log('¡Prompt enviado con éxito a n8n!');
+            console.log('¡Conectado! El prompt llegó correctamente a n8n.');
         } else {
-            console.error('n8n recibió la petición pero devolvió un error:', respuesta.status);
+            console.error('n8n rechazó la petición. Código de estado:', respuesta.status);
         }
     })
     .catch(error => {
-        console.error('Error de red o conexión con n8n:', error);
+        console.error('Error de red al intentar contactar a n8n:', error);
     });
-};
+}
