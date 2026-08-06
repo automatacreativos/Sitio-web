@@ -561,44 +561,40 @@ Notion y cientos de aplicaciones.
 
        <form action="https://formspree.io/f/moeavjll" method="POST">
 
-            <!-- Configuración del Asunto para Gmail y tu automatización en n8n -->
-            <input type="hidden" name="_subject" value="Nueva Consulta: Proyecto de Automatización">
+    <!-- Configuración del Asunto para Gmail y n8n -->
+    <input type="hidden" name="_subject" value="Nueva Consulta: Proyecto de Automatización">
 
-            <!-- Evita el spam en el formulario -->
-            <input type="hidden" name="_captcha" value="false">
+    <input
+        type="text"
+        name="Nombre"
+        placeholder="Nombre"
+        required>
 
-            <input
-                type="text"
-                name="Nombre"
-                placeholder="Nombre"
-                required>
+    <!-- 'email' debe ser estrictamente en minúsculas para Formspree -->
+    <input
+        type="email"
+        name="email"
+        placeholder="Correo electrónico"
+        required>
 
-            <input
-                type="email"
-                name="Email"
-                placeholder="Correo electrónico"
-                required>
+    <input
+        type="text"
+        name="Empresa"
+        placeholder="Empresa">
 
-            <input
-                type="text"
-                name="Empresa"
-                placeholder="Empresa">
+    <textarea
+        name="Mensaje"
+        rows="6"
+        placeholder="Cuéntanos sobre tu proyecto..."
+        required></textarea>
 
-            <textarea
-                name="Mensaje"
-                rows="6"
-                placeholder="Cuéntanos sobre tu proyecto..."
-                required></textarea>
+    <button
+        type="submit"
+        class="btn-primary">
+        Enviar consulta
+    </button>
 
-            <button
-                type="submit"
-                class="btn-primary">
-
-                Enviar consulta
-
-            </button>
-
-        </form>
+</form>
 
     </div>
 
