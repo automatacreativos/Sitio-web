@@ -547,25 +547,39 @@ Notion y cientos de aplicaciones.
 
         </div>
 
-        <form>
+       <form action="https://formspree.io/f/automatacreativos@gmail.com" method="POST">
+
+            <!-- Configuración del Asunto para Gmail y tu automatización en n8n -->
+            <input type="hidden" name="_subject" value="Nueva Consulta: Proyecto de Automatización">
+
+            <!-- Evita el spam en el formulario -->
+            <input type="hidden" name="_captcha" value="false">
 
             <input
                 type="text"
-                placeholder="Nombre">
+                name="Nombre"
+                placeholder="Nombre"
+                required>
 
             <input
                 type="email"
-                placeholder="Correo electrónico">
+                name="Email"
+                placeholder="Correo electrónico"
+                required>
 
             <input
                 type="text"
+                name="Empresa"
                 placeholder="Empresa">
 
             <textarea
+                name="Mensaje"
                 rows="6"
-                placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+                placeholder="Cuéntanos sobre tu proyecto..."
+                required></textarea>
 
             <button
+                type="submit"
                 class="btn-primary">
 
                 Enviar consulta
